@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:platzi_tripss_app/description_place.dart';
 import 'package:platzi_tripss_app/gradient_back.dart';
 import 'package:platzi_tripss_app/header_appbar.dart';
+import 'package:platzi_tripss_app/home/platzi_trips.dart';
 import 'package:platzi_tripss_app/review_list.dart';
 
 ///
@@ -28,20 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: Scaffold(
-        body: Stack(children: [
-          ListView(
-            children: [
-              DescriptionPlace(
-                  "Lorem ipsum",
-                  "Lorem ipsum odor amet, consectetuer adipiscing elit. Lectus felis penatibus. Taciti nam at nam. Vulputate rutrum mollis. Quam orci magna dictumst.",
-                  5),
-              ReviewList()
-            ],
-          ),
-          HeaderAppBar(),
-        ]),
-      ),
+      home: PlatziTrips(),
     );
   }
 }
