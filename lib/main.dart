@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:platzi_tripss_app/description_place.dart';
+import 'package:platzi_tripss_app/gradient_back.dart';
+import 'package:platzi_tripss_app/review_list.dart';
 
 ///
 void main() => runApp(const MyApp());
@@ -26,18 +28,19 @@ class MyApp extends StatelessWidget {
       ),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
       home: Scaffold(
-          appBar: AppBar(
-            title: const Text("Share"),
-            leading: const IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: null,
-            ),
-            centerTitle: false,
+        body: Stack(children: [
+          ListView(
+            children: [
+              DescriptionPlace(
+                  "Lorem ipsum",
+                  "Lorem ipsum odor amet, consectetuer adipiscing elit. Lectus felis penatibus. Taciti nam at nam. Vulputate rutrum mollis. Quam orci magna dictumst.",
+                  5),
+              ReviewList()
+            ],
           ),
-          body: DescriptionPlace(
-              "Lorem ipsum",
-              "Lorem ipsum odor amet, consectetuer adipiscing elit. Lectus felis penatibus. Taciti nam at nam. Vulputate rutrum mollis. Quam orci magna dictumst.",
-              5)),
+          GradientBack(),
+        ]),
+      ),
     );
   }
 }
