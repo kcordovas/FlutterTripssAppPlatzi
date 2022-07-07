@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platzi_tripss_app/floating_action_button_green.dart';
 
 class CardImage extends StatelessWidget {
   var pathImage = "assets/london.jpg";
@@ -23,6 +24,9 @@ class CardImage extends StatelessWidget {
                 offset: Offset(0.0, 7.0))
           ]),
     );
-    return card;
+    return Stack(
+      alignment: const Alignment(0.9, 1.1),
+      children: [card, FloatingActionButtonGreen()],
+    );
   }
 }
