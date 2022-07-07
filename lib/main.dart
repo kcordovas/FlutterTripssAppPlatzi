@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:platzi_tripss_app/description_place.dart';
-import 'package:platzi_tripss_app/gradient_back.dart';
-import 'package:platzi_tripss_app/header_appbar.dart';
 import 'package:platzi_tripss_app/home/platzi_trips.dart';
-import 'package:platzi_tripss_app/review_list.dart';
+import 'package:platzi_tripss_app/home/platzi_trips_cupertino.dart';
+import 'dart:io' show Platform;
 
 ///
 void main() => runApp(const MyApp());
@@ -29,7 +27,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: PlatziTrips(),
+      home: (Platform.isAndroid) ? PlatziTrips() : PlatziTripsCupertino(),
     );
   }
 }
