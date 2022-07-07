@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platzi_tripss_app/button_purple.dart';
 
 class DescriptionPlace extends StatelessWidget {
   late String namePlaceText, descriptionPlace;
@@ -74,7 +75,8 @@ class DescriptionPlace extends StatelessWidget {
     );
 
     return Column(
-      children: [titleStart, textDescription],
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [titleStart, textDescription, ButtonPurple("Navigate")],
     );
   }
 }
