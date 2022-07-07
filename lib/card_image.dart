@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CardImage extends StatelessWidget {
-  var pathImage = "assets/londong.jpg";
+  var pathImage = "assets/london.jpg";
 
   CardImage(this.pathImage, {Key? key}) : super(key: key);
 

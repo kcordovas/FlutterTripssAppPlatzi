@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:platzi_tripss_app/description_place.dart';
 import 'package:platzi_tripss_app/gradient_back.dart';
+import 'package:platzi_tripss_app/header_appbar.dart';
 import 'package:platzi_tripss_app/review_list.dart';
 
 ///
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
               ReviewList()
             ],
           ),
-          GradientBack("Popular"),
+          HeaderAppBar(),
         ]),
       ),
     );
