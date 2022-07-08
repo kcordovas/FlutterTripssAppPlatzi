@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:platzi_tripss_app/profile/icon_button_profile.dart';
+import 'package:platzi_tripss_app/user/ui/widgets/icon_button_profile.dart';
 
 class ListIconHorizontalProfile extends StatelessWidget {
   const ListIconHorizontalProfile({Key? key}) : super(key: key);

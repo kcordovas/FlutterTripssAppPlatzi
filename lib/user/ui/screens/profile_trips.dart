@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:platzi_tripss_app/gradient_back.dart';
-import 'package:platzi_tripss_app/header_appbar.dart';
-import 'package:platzi_tripss_app/profile/card_image_list_with_details_profile.dart';
-import 'package:platzi_tripss_app/profile/list_icon_button_profile.dart';
-import 'package:platzi_tripss_app/review.dart';
+import 'package:platzi_tripss_app/widgets/gradient_back.dart';
+import 'package:platzi_tripss_app/user/ui/screens/card_image_list_with_details_profile.dart';
+import 'package:platzi_tripss_app/place/ui/widgets/review.dart';
+import 'package:platzi_tripss_app/user/ui/widgets/list_icon_button_profile.dart';
 
 class ProfileTrips extends StatelessWidget {
   const ProfileTrips({Key? key}) : super(key: key);

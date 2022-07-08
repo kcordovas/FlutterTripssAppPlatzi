@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:platzi_tripss_app/profile/card_image_with_details_profile.dart';
+import 'package:platzi_tripss_app/user/ui/screens/card_image_with_details_profile.dart';
 
 class CardImageListWithDetailsProfile extends StatelessWidget {
   const CardImageListWithDetailsProfile({Key? key}) : super(key: key);

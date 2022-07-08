@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:platzi_tripss_app/floating_action_button_green.dart';
+import 'package:platzi_tripss_app/widgets/floating_action_button_green.dart';
 
 class CardDetailsImageProfile extends StatelessWidget {
   var titleDetail = "Knucles Mountain";
