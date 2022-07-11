@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:platzi_tripss_app/user/bloc/bloc_user.dart';
 import 'package:platzi_tripss_app/widgets/button_green.dart';
 import 'package:platzi_tripss_app/widgets/gradient_back.dart';
 
@@ -10,8 +12,12 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  late UserBloc userBloc;
+
   @override
   Widget build(BuildContext context) {
+    // Instance with a provider
+    userBloc = BlocProvider.of(context);
     return signInGoogleUi();
   }
 
@@ -34,7 +40,16 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               ButtonGreen(
                   text: "Login with Gmail",
-                  onPressed: () {},
+                  onPressed: () {
+                    userBloc.signIn().then((user) {
+                      if (user != null) {
+                        print("User is not null");
+                        print("${user.displayName}");
+                      } else {
+                        print("User is null");
+                      }
+                    });
+                  },
                   width: double.infinity,
                   height: 50.0)
             ],
