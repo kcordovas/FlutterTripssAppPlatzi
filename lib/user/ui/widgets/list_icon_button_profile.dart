@@ -14,9 +14,12 @@ class ListIconHorizontalProfile extends StatelessWidget {
         children: [
           IconButtonWhite(Icons.flag, true, true),
           IconButtonWhite(Icons.card_giftcard, false, true),
+          // Add new place
           IconButtonWhite(Icons.add, true, false),
-          IconButtonWhite(Icons.mail, false, true),
-          IconButtonWhite(Icons.person, false, true),
+          // Change Password
+          IconButtonWhite(Icons.vpn_key, false, true),
+          // Close session - Logout
+          IconButtonWhite(Icons.logout, false, true),
         ],
       ),
     );

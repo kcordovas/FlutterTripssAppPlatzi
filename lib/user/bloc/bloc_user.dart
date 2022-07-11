@@ -7,7 +7,7 @@ class UserBloc implements Bloc {
   // Data Flow - Streams
   // Streams with Firebase
   // StreamController
-  Stream<User?> _streamUser = FirebaseAuth.instance.authStateChanges();
+  final Stream<User?> _streamUser = FirebaseAuth.instance.authStateChanges();
   Stream<User?> get authStatus => _streamUser;
 
   // Use Case of User object in method form
@@ -16,6 +16,12 @@ class UserBloc implements Bloc {
   // 1. SignIn App with Google
   Future<User?> signIn() {
     return _authRepository.signInFirebase();
+  }
+
+  // Use Case
+  // 2. SignOut
+  void signOut() {
+    _authRepository.signOut();
   }
 
   @override

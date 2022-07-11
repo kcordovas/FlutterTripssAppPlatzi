@@ -22,4 +22,10 @@ class FirebaseAuthApi {
       throw Exception("GoogleSignInAccount is null");
     }
   }
+
+  void signOut() async {
+    await _auth.signOut().then((value) => print("Session close"));
+    _googleSignIn.signOut();
+    print("Google Session closed");
+  }
 }
