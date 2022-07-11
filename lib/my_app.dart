@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
-import 'package:platzi_tripss_app/home/platzi_trips.dart';
-import 'package:platzi_tripss_app/home/platzi_trips_cupertino.dart';
-import 'dart:io' show Platform;
-
 import 'package:platzi_tripss_app/user/bloc/bloc_user.dart';
 import 'package:platzi_tripss_app/user/ui/screens/sign_in_screen.dart';
 
@@ -35,8 +31,5 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: (Platform.isAndroid)
-          ? PlatziTrips()
-          // : const PlatziTripsCupertino(),
-          : SignInScreen());
+      home: SignInScreen());
 }

@@ -4,6 +4,12 @@ import 'package:platzi_tripss_app/user/repository/auth_repository.dart';
 
 class UserBloc implements Bloc {
   final _authRepository = AuthRepository();
+  // Data Flow - Streams
+  // Streams with Firebase
+  // StreamController
+  Stream<User?> _streamUser = FirebaseAuth.instance.authStateChanges();
+  Stream<User?> get authStatus => _streamUser;
+
   // Use Case of User object in method form
 
   // Use Case
