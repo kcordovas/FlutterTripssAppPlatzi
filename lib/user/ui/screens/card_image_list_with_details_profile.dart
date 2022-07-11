@@ -7,12 +7,13 @@ class CardImageListWithDetailsProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 350.0),
+      margin: EdgeInsets.only(top: 300.0),
       child: ListView(
-        children: const [
+        children: [
           CardImageWithDetails(),
           CardImageWithDetails(),
-          CardImageWithDetails()
+          CardImageWithDetails(),
+          Container(height: 48.0)
         ],
       ),
     );

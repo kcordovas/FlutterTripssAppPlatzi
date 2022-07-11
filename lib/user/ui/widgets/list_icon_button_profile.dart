@@ -11,7 +11,7 @@ class ListIconHorizontalProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     _userBloc = BlocProvider.of(context);
     return Container(
-      margin: EdgeInsets.all(16.0),
+      margin: const EdgeInsets.all(16.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
