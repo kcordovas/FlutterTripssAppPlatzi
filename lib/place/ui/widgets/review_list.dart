@@ -7,10 +7,21 @@ class ReviewList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ReviewCard("assets/london.jpg", "Kevin One", "1 toll", "One comment"),
-        ReviewCard("assets/london.jpg", "Kevin Two", "2 toll", "Two comment"),
         ReviewCard(
-            "assets/london.jpg", "Kevin Three", "3 toll", "Three comment"),
+            pathImage: "assets/london.jpg",
+            titleCardText: "Kevin One",
+            detailsCardText: "1 toll",
+            additionalCardText: "One comment"),
+        ReviewCard(
+            pathImage: "assets/london.jpg",
+            titleCardText: "Kevin Two",
+            detailsCardText: "2 toll",
+            additionalCardText: "Two comment"),
+        ReviewCard(
+            pathImage: "assets/london.jpg",
+            titleCardText: "Kevin Three",
+            detailsCardText: "3 toll",
+            additionalCardText: "Three comment"),
       ],
     );
   }

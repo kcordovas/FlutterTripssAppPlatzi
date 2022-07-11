@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
 
-class IconButtonWhite extends StatelessWidget {
-  var iconButton = Icons.add;
-  var isActive = true;
-  var isMini = true;
-  IconButtonWhite(this.iconButton, this.isActive, this.isMini, {Key? key})
+class IconButtonWhite extends StatefulWidget {
+  final VoidCallback onPressed;
+  final iconButton;
+  final isMini;
+  final isGrayColor;
+  IconButtonWhite(
+      {Key? key,
+      required this.iconButton,
+      required this.onPressed,
+      this.isMini = true,
+      this.isGrayColor = false})
       : super(key: key);
 
   @override
+  State<IconButtonWhite> createState() => _IconButtonWhiteState();
+}
+
+class _IconButtonWhiteState extends State<IconButtonWhite> {
+  @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text("Profile action")));
-      },
-      mini: isMini,
-      backgroundColor: isActive ? Colors.white : Colors.grey,
+      onPressed: widget.onPressed,
+      mini: widget.isMini,
+      backgroundColor: widget.isGrayColor ? Colors.grey : Colors.white,
       child: Icon(
-        iconButton,
+        widget.iconButton,
         color: Colors.indigo,
       ),
     );
