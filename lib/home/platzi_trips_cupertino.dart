@@ -24,7 +24,7 @@ class PlatziTripsCupertino extends StatelessWidget {
                 ;
               case 2:
                 return CupertinoTabView(
-                  builder: (context) => const ProfileTrips(),
+                  builder: (context) => ProfileTrips.userBlocProvider,
                 );
               default:
                 throw Exception("Index is not correct");

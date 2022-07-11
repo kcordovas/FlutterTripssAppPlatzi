@@ -14,7 +14,7 @@ class _PlatziTripsState extends State<PlatziTrips> {
   final widgetsTab = <Widget>[
     const HomeTrips(),
     const SearchTrips(),
-    const ProfileTrips()
+    ProfileTrips.userBlocProvider
   ];
   var tabIndex = 0;
 
