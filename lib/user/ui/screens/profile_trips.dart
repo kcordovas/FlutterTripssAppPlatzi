@@ -23,7 +23,10 @@ class ProfileTrips extends StatelessWidget {
     _userBloc = BlocProvider.of(context);
     return Stack(
       children: [
-        GradientBack("Profile", 300.0),
+        GradientBack(
+          title: "Profile",
+          heightGradient: 300.0,
+        ),
         CardImageListWithDetailsProfile(),
         Column(
           children: [

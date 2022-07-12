@@ -47,7 +47,7 @@ class _SignInScreenState extends State<SignInScreen> {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          GradientBack("", double.infinity),
+          GradientBack(title: ""),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -57,6 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     fontSize: 37.0,
                     fontFamily: "Lato",
                     color: Colors.white,
+                    overflow: TextOverflow.visible,
                     fontWeight: FontWeight.bold),
               ),
               ButtonGreen(
