@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:platzi_tripss_app/widgets/gradient_back.dart';
+import 'package:platzi_tripss_app/widgets/title_header_widget.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   static const routeName = '/add_place_screen';
@@ -20,7 +21,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
       body: Stack(
         children: [
           GradientBack(
-            title: "",
             heightGradient: 300.0,
           ),
           Row(
@@ -38,6 +38,12 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                         size: 48.0,
                       )),
                 ),
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.only(top: 45.0, left: 20.0, right: 10.0),
+                child: const TitleHeaderWidget(
+                    title: "Add a new Place", withGradient: false),
               )
             ],
           )

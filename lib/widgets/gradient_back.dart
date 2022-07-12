@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class GradientBack extends StatelessWidget {
-  String title;
   // When height is null, the default value is full screen
   double? heightGradient;
-  GradientBack({Key? key, this.title = "Popular", this.heightGradient})
-      : super(key: key);
+  GradientBack({Key? key, this.heightGradient}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +12,6 @@ class GradientBack extends StatelessWidget {
     double screenWidht = MediaQuery.of(context).size.width;
     // Asign a value when param is null
     heightGradient ??= screenHeight;
-
-    var widgetTitle = Text(title,
-        style: const TextStyle(
-            color: Colors.white,
-            fontSize: 30.0,
-            fontFamily: "Lato",
-            fontWeight: FontWeight.bold));
 
     return Container(
         height: heightGradient,

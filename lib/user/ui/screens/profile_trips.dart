@@ -3,9 +3,9 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_tripss_app/place/ui/widgets/user_info_card.dart';
 import 'package:platzi_tripss_app/user/bloc/bloc_user.dart';
 import 'package:platzi_tripss_app/user/model/user.dart';
-import 'package:platzi_tripss_app/widgets/gradient_back.dart';
 import 'package:platzi_tripss_app/user/ui/screens/card_image_list_with_details_profile.dart';
 import 'package:platzi_tripss_app/user/ui/widgets/list_icon_button_profile.dart';
+import 'package:platzi_tripss_app/widgets/title_header_widget.dart';
 
 class ProfileTrips extends StatelessWidget {
   static const routeName = '/profile_trips_screen';
@@ -24,8 +24,9 @@ class ProfileTrips extends StatelessWidget {
     _userBloc = BlocProvider.of(context);
     return Stack(
       children: [
-        GradientBack(
+        const TitleHeaderWidget(
           title: "Profile",
+          withGradient: true,
           heightGradient: 300.0,
         ),
         CardImageListWithDetailsProfile(),
