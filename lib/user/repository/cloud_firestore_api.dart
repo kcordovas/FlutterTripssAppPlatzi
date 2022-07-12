@@ -14,18 +14,18 @@ class CloudFireStoreApi {
         _firebaseStorage.collection(userCollectionName);
     final docReference = collectionReference.doc(userTrips.uid);
     return docReference.set({
-      UserFireStoreLabel.uid.name: userTrips.uid,
-      UserFireStoreLabel.name.name: userTrips.name,
-      UserFireStoreLabel.email.name: userTrips.email,
-      UserFireStoreLabel.photoUrl.name: userTrips.photoUrl,
-      UserFireStoreLabel.myPlaces.name: userTrips.myPlaces,
-      UserFireStoreLabel.myFavoritePlaces.name: userTrips.myFavoritePlaces,
-      UserFireStoreLabel.lastSignIn.name: DateTime.now()
+      _UserFireStoreLabel.uid.name: userTrips.uid,
+      _UserFireStoreLabel.name.name: userTrips.name,
+      _UserFireStoreLabel.email.name: userTrips.email,
+      _UserFireStoreLabel.photoUrl.name: userTrips.photoUrl,
+      _UserFireStoreLabel.myPlaces.name: userTrips.myPlaces,
+      _UserFireStoreLabel.myFavoritePlaces.name: userTrips.myFavoritePlaces,
+      _UserFireStoreLabel.lastSignIn.name: DateTime.now()
     }, SetOptions(merge: true));
   }
 }
 
-enum UserFireStoreLabel {
+enum _UserFireStoreLabel {
   uid,
   name,
   email,

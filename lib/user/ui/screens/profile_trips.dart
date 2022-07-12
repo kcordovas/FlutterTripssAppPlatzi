@@ -8,6 +8,7 @@ import 'package:platzi_tripss_app/user/ui/screens/card_image_list_with_details_p
 import 'package:platzi_tripss_app/user/ui/widgets/list_icon_button_profile.dart';
 
 class ProfileTrips extends StatelessWidget {
+  static const routeName = '/profile_trips_screen';
   static final userBlocProvider = BlocProvider(
     bloc: UserBloc(),
     child: ProfileTrips(),
