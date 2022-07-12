@@ -58,6 +58,7 @@ class ProfileTrips extends StatelessWidget {
       if (_userBloc.currentUser != null) {
         final tempUser = _userBloc.currentUser!;
         _userTrips = UserTrips(
+            uid: "",
             name: tempUser.displayName!,
             email: tempUser.email!,
             photoUrl: tempUser.photoURL!);
@@ -77,6 +78,7 @@ class ProfileTrips extends StatelessWidget {
       );
     } else {
       _userTrips = UserTrips(
+          uid: "",
           name: asyncSnapshot.data.displayName,
           email: asyncSnapshot.data.email,
           photoUrl: asyncSnapshot.data.photoURL);
