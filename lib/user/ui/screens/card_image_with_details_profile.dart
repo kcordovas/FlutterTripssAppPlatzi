@@ -10,7 +10,8 @@ class CardImageWithDetails extends StatelessWidget {
     return Stack(
       alignment: const Alignment(0.0, 1.1),
       children: [
-        CardImage("assets/london.jpg", double.infinity, false),
+        CardImage(
+            "assets/london.jpg", double.infinity, false, "FAB_DETAIL_HERO"),
         CardDetailsImageProfile()
       ],
     );

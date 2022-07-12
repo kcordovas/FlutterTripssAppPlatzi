@@ -5,8 +5,10 @@ class CardImage extends StatelessWidget {
   var pathImage = "assets/london.jpg";
   var widthImage = 250.0;
   var isWithIcon = true;
+  final heroTag;
 
-  CardImage(this.pathImage, this.widthImage, this.isWithIcon, {Key? key})
+  CardImage(this.pathImage, this.widthImage, this.isWithIcon, this.heroTag,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -29,7 +31,14 @@ class CardImage extends StatelessWidget {
     );
     return Stack(
       alignment: const Alignment(0.9, 1.1),
-      children: [card, isWithIcon ? FloatingActionButtonGreen() : Container()],
+      children: [
+        card,
+        isWithIcon
+            ? FloatingActionButtonGreen(
+                heroTagString: heroTag,
+              )
+            : Container()
+      ],
     );
   }
 }

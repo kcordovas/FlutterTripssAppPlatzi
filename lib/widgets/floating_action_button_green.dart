@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FloatingActionButtonGreen extends StatefulWidget {
-  FloatingActionButtonGreen({Key? key}) : super(key: key);
+  final heroTagString;
+  FloatingActionButtonGreen({Key? key, required this.heroTagString})
+      : super(key: key);
 
   @override
   State<FloatingActionButtonGreen> createState() =>
@@ -19,6 +21,7 @@ class _FloatingActionButtonGreenState extends State<FloatingActionButtonGreen> {
       mini: true,
       tooltip: "Fab",
       child: Icon(iconFavorite),
+      heroTag: widget.heroTagString,
     );
   }
 
