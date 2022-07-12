@@ -6,6 +6,7 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_tripss_app/home/platzi_trips.dart';
 import 'package:platzi_tripss_app/home/platzi_trips_cupertino.dart';
 import 'package:platzi_tripss_app/user/bloc/bloc_user.dart';
+import 'package:platzi_tripss_app/user/model/user.dart';
 import 'package:platzi_tripss_app/widgets/button_green.dart';
 import 'package:platzi_tripss_app/widgets/gradient_back.dart';
 
@@ -17,18 +18,18 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  late UserBloc userBloc;
+  late UserBloc _userBloc;
 
   @override
   Widget build(BuildContext context) {
     // Instance with a provider
-    userBloc = BlocProvider.of(context);
+    _userBloc = BlocProvider.of(context);
     return _handleCurrentSession();
   }
 
   Widget _handleCurrentSession() {
     return StreamBuilder(
-      stream: userBloc.authStatus,
+      stream: _userBloc.authStatus,
       builder: (context, AsyncSnapshot<User?> snapShot) {
         if (!snapShot.hasData || snapShot.hasError) {
           return signInGoogleUi();
@@ -61,12 +62,13 @@ class _SignInScreenState extends State<SignInScreen> {
               ButtonGreen(
                   text: "Login with Gmail",
                   onPressed: () {
-                    userBloc.signIn().then((user) {
+                    _userBloc.signIn().then((user) {
                       if (user != null) {
-                        print("User is not null");
-                        print("${user.displayName}");
-                      } else {
-                        print("User is null");
+                        _userBloc.updateUser(UserTrips(
+                            uid: user.uid,
+                            name: user.displayName!,
+                            email: user.email!,
+                            photoUrl: user.photoURL!));
                       }
                     });
                   },
