@@ -5,10 +5,12 @@ class IconButtonWhite extends StatefulWidget {
   final iconButton;
   final isMini;
   final isGrayColor;
+  final heroTagString;
   IconButtonWhite(
       {Key? key,
       required this.iconButton,
       required this.onPressed,
+      required this.heroTagString,
       this.isMini = true,
       this.isGrayColor = false})
       : super(key: key);
@@ -28,6 +30,7 @@ class _IconButtonWhiteState extends State<IconButtonWhite> {
         widget.iconButton,
         color: Colors.indigo,
       ),
+      heroTag: widget.heroTagString,
     );
   }
 }

@@ -1,17 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:platzi_tripss_app/place/model/place.dart';
+import 'package:platzi_tripss_app/user/model/user.dart';
 import 'package:platzi_tripss_app/user/repository/auth_repository.dart';
+import 'package:platzi_tripss_app/user/repository/cloud_firestore_repository.dart';
 
 class UserBloc implements Bloc {
   final _authRepository = AuthRepository();
+  final _cloudFireStoreRepository = CloudFireStoreRepository();
+
   // Data Flow - Streams
   // Streams with Firebase
   // StreamController
-  final Stream<User?> _streamUser = FirebaseAuth.instance.authStateChanges();
-  Stream<User?> get authStatus => _streamUser;
+  authStatus() => _authRepository.authStatus;
 
-  final _currentUser = FirebaseAuth.instance.currentUser;
-  User? get currentUser => _currentUser;
+  currentUser() => _authRepository.currentUser;
 
   // Use Case of User object in method form
 
@@ -26,6 +29,16 @@ class UserBloc implements Bloc {
   void signOut() {
     _authRepository.signOut();
   }
+
+  // Use Case
+  // 3. Register a user
+  void updateUser(UserTrips userTrips) =>
+      _cloudFireStoreRepository.updateUserFireStore(userTrips);
+
+  // Use Case
+  // 4. Add a place
+  Future<void> updatePlace(Place place) =>
+      _cloudFireStoreRepository.updatePlaceData(place);
 
   @override
   void dispose() {

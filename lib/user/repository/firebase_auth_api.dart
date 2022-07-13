@@ -6,6 +6,15 @@ class FirebaseAuthApi {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
+  // Data Flow - Streams
+  // Streams with Firebase
+  // StreamController
+  final Stream<User?> _streamUser = FirebaseAuth.instance.authStateChanges();
+  Stream<User?> get authStatus => _streamUser;
+
+  final _currentUser = FirebaseAuth.instance.currentUser;
+  User? get currentUser => _currentUser;
+
   Future<User?> signIngFirebase() async {
     GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
     if (googleSignInAccount != null) {

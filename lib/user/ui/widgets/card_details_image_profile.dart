@@ -5,7 +5,9 @@ class CardDetailsImageProfile extends StatelessWidget {
   var titleDetail = "Knucles Mountain";
   var description = "Hiking, Walter, Scenary";
   var steps = "Steps 123, 123, 123";
-  CardDetailsImageProfile({Key? key}) : super(key: key);
+  final String heroTagString;
+  CardDetailsImageProfile({Key? key, required this.heroTagString})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,14 @@ class CardDetailsImageProfile extends StatelessWidget {
           ]),
       child: Stack(
         alignment: const Alignment(1.0, 1.9),
-        children: [cardDetails, FloatingActionButtonGreen()],
+        children: [
+          cardDetails,
+          FloatingActionButtonGreen(
+            iconData: Icons.favorite_outline,
+            onPressed: () {},
+            heroTagString: heroTagString,
+          )
+        ],
       ),
     );
   }

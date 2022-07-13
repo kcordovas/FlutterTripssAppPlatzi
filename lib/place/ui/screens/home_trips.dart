@@ -5,6 +5,7 @@ import '../widgets/description_place.dart';
 import 'header_appbar.dart';
 
 class HomeTrips extends StatelessWidget {
+  static const routeName = '/home_trips_screen';
   final descriptionDummy =
       "Lorem ipsum odor amet, consectetuer adipiscing elit. Lectus felis penatibus. Taciti nam at nam. Vulputate rutrum mollis. Quam orci magna dictumst.";
   const HomeTrips({Key? key}) : super(key: key);

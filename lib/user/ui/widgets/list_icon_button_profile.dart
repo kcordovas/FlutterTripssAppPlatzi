@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:platzi_tripss_app/place/ui/screens/add_place_screen.dart';
 import 'package:platzi_tripss_app/user/bloc/bloc_user.dart';
 import 'package:platzi_tripss_app/user/ui/widgets/icon_button_profile.dart';
 
@@ -22,7 +23,9 @@ class ListIconHorizontalProfile extends StatelessWidget {
           IconButtonWhite(
             iconButton: Icons.add,
             isMini: false,
-            onPressed: () {},
+            onPressed: () =>
+                Navigator.pushNamed(context, AddPlaceScreen.routeName),
+            heroTagString: "FAB_ADD",
           ),
           // Change Password
           IconButtonWhite(
@@ -30,6 +33,7 @@ class ListIconHorizontalProfile extends StatelessWidget {
             isMini: true,
             onPressed: () {},
             isGrayColor: true,
+            heroTagString: "VPN_ADD",
           ),
           // Close session - Logout
           IconButtonWhite(
@@ -39,6 +43,7 @@ class ListIconHorizontalProfile extends StatelessWidget {
             onPressed: () {
               _userBloc.signOut();
             },
+            heroTagString: "LOGOUT",
           ),
         ],
       ),
