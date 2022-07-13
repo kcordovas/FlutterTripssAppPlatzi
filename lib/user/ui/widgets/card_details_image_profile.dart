@@ -6,7 +6,12 @@ class CardDetailsImageProfile extends StatelessWidget {
   var description = "Hiking, Walter, Scenary";
   var steps = "Steps 123, 123, 123";
   final String heroTagString;
-  CardDetailsImageProfile({Key? key, required this.heroTagString})
+  CardDetailsImageProfile(
+      {Key? key,
+      required this.titleDetail,
+      required this.description,
+      required this.steps,
+      required this.heroTagString})
       : super(key: key);
 
   @override

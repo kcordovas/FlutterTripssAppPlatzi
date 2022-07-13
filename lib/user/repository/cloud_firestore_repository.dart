@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:platzi_tripss_app/place/model/place.dart';
 import 'package:platzi_tripss_app/user/model/user.dart';
 import 'package:platzi_tripss_app/user/repository/cloud_firestore_api.dart';
@@ -10,4 +11,13 @@ class CloudFireStoreRepository {
 
   Future<void> updatePlaceData(Place place) =>
       _cloudFireStoreApi.updatePlaceData(place);
+
+  Stream<QuerySnapshot> get placesStream =>
+      _cloudFireStoreApi.placeListStream();
+
+  Stream<QuerySnapshot> placesStreamById(String uidUser) =>
+      _cloudFireStoreApi.placeListStreamByUserId(uidUser);
+
+  List<Place> buildPlacesOfSnapshot(List<DocumentSnapshot> listSnapshot) =>
+      _cloudFireStoreApi.buildPlacesOfSnapshot(listSnapshot);
 }

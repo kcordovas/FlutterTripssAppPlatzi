@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:platzi_tripss_app/place/model/place.dart';
 import 'package:platzi_tripss_app/user/model/user.dart';
 
@@ -12,6 +13,16 @@ class CloudFireStoreApi {
 
   final FirebaseFirestore _firebaseStorage = FirebaseFirestore.instance;
   final _firebaseAuthApi = FirebaseAuthApi();
+
+  Stream<QuerySnapshot> placeListStream() =>
+      _firebaseStorage.collection(placesCollectionName).snapshots();
+
+  Stream<QuerySnapshot> placeListStreamByUserId(String uidUser) =>
+      _firebaseStorage
+          .collection(placesCollectionName)
+          .where(_PlaceFireStoreLabel.userOwner.name,
+              isEqualTo: _firebaseStorage.doc("$userCollectionName/$uidUser"))
+          .snapshots();
 
   void updateUserData(UserTrips userTrips) async {
     final CollectionReference collectionReference =
@@ -36,10 +47,37 @@ class CloudFireStoreApi {
         _PlaceFireStoreLabel.name.name: place.name,
         _PlaceFireStoreLabel.description.name: place.description,
         _PlaceFireStoreLabel.likes.name: place.numLikes,
-        _PlaceFireStoreLabel.userOwner.name:
-            "$userCollectionName/${_firebaseAuthApi.currentUser?.uid}" // reference
+        _PlaceFireStoreLabel.uriImage.name: place.uriImage,
+        // reference
+        _PlaceFireStoreLabel.userOwner.name: _firebaseStorage
+            .doc("$userCollectionName/${_firebaseAuthApi.currentUser?.uid}")
+      }).then((documentRef) {
+        documentRef.get().then((docSnapshot) {
+          final docRefUser = _firebaseStorage
+              .collection(userCollectionName)
+              .doc(_firebaseAuthApi.currentUser?.uid);
+          docRefUser.update({
+            // ID place reference and as array
+            _UserFireStoreLabel.myPlaces.name: FieldValue.arrayUnion([
+              _firebaseStorage.doc("$placesCollectionName/${docSnapshot.id}")
+            ])
+          });
+        });
       });
     }
+  }
+
+  List<Place> buildPlacesOfSnapshot(List<DocumentSnapshot> placeListSnapshot) {
+    List<Place> listPlaces = placeListSnapshot
+        .map((documentSnapshot) => Place(
+            id: documentSnapshot.id,
+            name: documentSnapshot[_PlaceFireStoreLabel.name.name],
+            description:
+                documentSnapshot[_PlaceFireStoreLabel.description.name],
+            numLikes: documentSnapshot[_PlaceFireStoreLabel.likes.name],
+            uriImage: documentSnapshot[_PlaceFireStoreLabel.uriImage.name]))
+        .toList();
+    return listPlaces;
   }
 }
 
