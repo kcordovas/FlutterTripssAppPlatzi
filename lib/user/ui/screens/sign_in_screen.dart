@@ -29,7 +29,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Widget _handleCurrentSession() {
     return StreamBuilder(
-      stream: _userBloc.authStatus,
+      stream: _userBloc.authStatus(),
       builder: (context, AsyncSnapshot<User?> snapShot) {
         if (!snapShot.hasData || snapShot.hasError) {
           return signInGoogleUi();

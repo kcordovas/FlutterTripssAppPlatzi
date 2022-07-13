@@ -45,7 +45,7 @@ class ProfileTrips extends StatelessWidget {
 
   Widget streamProfileWidget() {
     return StreamBuilder(
-      stream: _userBloc.authStatus,
+      stream: _userBloc.authStatus(),
       builder: (context, asyncSnapshot) {
         switch (asyncSnapshot.connectionState) {
           case ConnectionState.active:
@@ -60,13 +60,13 @@ class ProfileTrips extends StatelessWidget {
 
   Widget _profileWidget(AsyncSnapshot asyncSnapshot) {
     if (!asyncSnapshot.hasData || asyncSnapshot.hasError) {
-      if (_userBloc.currentUser != null) {
-        final tempUser = _userBloc.currentUser!;
+      if (_userBloc.currentUser() != null) {
+        final tempUser = _userBloc.currentUser();
         _userTrips = UserTrips(
             uid: "",
-            name: tempUser.displayName!,
-            email: tempUser.email!,
-            photoUrl: tempUser.photoURL!);
+            name: tempUser.displayName,
+            email: tempUser.email,
+            photoUrl: tempUser.photoURL);
         return UserInfoCard(_userTrips);
       }
       return Container(
