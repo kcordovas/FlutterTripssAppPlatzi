@@ -15,6 +15,9 @@ class CloudFireStoreRepository {
   Stream<QuerySnapshot> get placesStream =>
       _cloudFireStoreApi.placeListStream();
 
+  Stream<QuerySnapshot> placesStreamById(String uidUser) =>
+      _cloudFireStoreApi.placeListStreamByUserId(uidUser);
+
   List<Place> buildPlacesOfSnapshot(List<DocumentSnapshot> listSnapshot) =>
       _cloudFireStoreApi.buildPlacesOfSnapshot(listSnapshot);
 }

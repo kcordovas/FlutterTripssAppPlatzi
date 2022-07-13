@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:platzi_tripss_app/place/model/place.dart';
 import 'package:platzi_tripss_app/user/model/user.dart';
 
@@ -15,6 +16,13 @@ class CloudFireStoreApi {
 
   Stream<QuerySnapshot> placeListStream() =>
       _firebaseStorage.collection(placesCollectionName).snapshots();
+
+  Stream<QuerySnapshot> placeListStreamByUserId(String uidUser) =>
+      _firebaseStorage
+          .collection(placesCollectionName)
+          .where(_PlaceFireStoreLabel.userOwner.name,
+              isEqualTo: _firebaseStorage.doc("$userCollectionName/$uidUser"))
+          .snapshots();
 
   void updateUserData(UserTrips userTrips) async {
     final CollectionReference collectionReference =

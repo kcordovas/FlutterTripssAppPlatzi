@@ -22,6 +22,8 @@ class UserBloc implements Bloc {
   currentUser() => _authRepository.currentUser;
 
   Stream<QuerySnapshot> placeList() => _cloudFireStoreRepository.placesStream;
+  Stream<QuerySnapshot> placeListByUserId(String uidUser) =>
+      _cloudFireStoreRepository.placesStreamById(uidUser);
   // Convert a snapshot in list of Places
   List<Place> buildPlacesOfSnapshot(
           List<DocumentSnapshot> listDocumentSnapshot) =>
