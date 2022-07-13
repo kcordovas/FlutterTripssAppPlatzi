@@ -12,7 +12,7 @@ class PlatziTrips extends StatefulWidget {
 
 class _PlatziTripsState extends State<PlatziTrips> {
   final widgetsTab = <Widget>[
-    const HomeTrips(),
+    HomeTrips.userBlocProvider,
     const SearchTrips(),
     ProfileTrips.userBlocProvider
   ];

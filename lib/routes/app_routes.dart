@@ -11,8 +11,8 @@ const String initialRouteLabelApp = '/';
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
     initialRouteLabelApp: (context) => SignInScreen(),
-    ProfileTrips.routeName: ((context) => ProfileTrips()),
-    HomeTrips.routeName: (context) => HomeTrips(),
+    ProfileTrips.routeName: ((context) => ProfileTrips.userBlocProvider),
+    HomeTrips.routeName: (context) => HomeTrips.userBlocProvider,
     SearchTrips.routeName: (context) => SearchTrips(),
     AddPlaceScreen.routeName: (context) => AddPlaceScreen(),
     // Tab Views
@@ -24,7 +24,8 @@ Route<dynamic> generateApplicationRouteToCupertino(
     RouteSettings routeSettings) {
   switch (routeSettings.name) {
     case HomeTrips.routeName:
-      return MaterialPageRoute(builder: (context) => HomeTrips());
+      return MaterialPageRoute(
+          builder: (context) => HomeTrips.userBlocProvider);
     case SearchTrips.routeName:
       return MaterialPageRoute(builder: (context) => SearchTrips());
     case ProfileTrips.routeName:

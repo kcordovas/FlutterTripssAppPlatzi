@@ -18,7 +18,7 @@ class PlatziTripsCupertino extends StatelessWidget {
               case 0:
                 return CupertinoTabView(
                   onGenerateRoute: generateApplicationRouteToCupertino,
-                  builder: (context) => const HomeTrips(),
+                  builder: (context) => HomeTrips.userBlocProvider,
                 );
               case 1:
                 return CupertinoTabView(
