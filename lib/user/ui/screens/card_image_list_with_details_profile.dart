@@ -10,9 +10,15 @@ class CardImageListWithDetailsProfile extends StatelessWidget {
       margin: EdgeInsets.only(top: 300.0),
       child: ListView(
         children: [
-          CardImageWithDetails(),
-          CardImageWithDetails(),
-          CardImageWithDetails(),
+          CardImageWithDetails(
+            heroTag: "Fab_One_Details",
+          ),
+          CardImageWithDetails(
+            heroTag: "Fab_Two_Details",
+          ),
+          CardImageWithDetails(
+            heroTag: "Fab_Three_Details",
+          ),
           Container(height: 48.0)
         ],
       ),

@@ -2,21 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:platzi_tripss_app/widgets/floating_action_button_green.dart';
 
 class CardImage extends StatelessWidget {
-  var pathImage = "assets/london.jpg";
-  var widthImage = 250.0;
-  var isWithIcon = true;
-  final heroTag;
+  final String pathImage;
+  final double heightImage;
+  final double widthImage;
+  IconData? iconData;
+  String? heroTag;
+  VoidCallback? onPressedFabIcon;
+  final bool isWithIcon;
+  double marginHorizontal;
+  double marginTop;
+  double marginBottom;
 
-  CardImage(this.pathImage, this.widthImage, this.isWithIcon, this.heroTag,
-      {Key? key})
+  CardImage(
+      {Key? key,
+      required this.heightImage,
+      required this.widthImage,
+      required this.pathImage,
+      required this.isWithIcon,
+      this.iconData,
+      this.onPressedFabIcon,
+      this.heroTag,
+      this.marginHorizontal = 20.0,
+      this.marginTop = 0.0,
+      this.marginBottom = 0.0})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final card = Container(
-      height: 350.0,
+      height: heightImage,
       width: widthImage,
-      margin: const EdgeInsets.only(top: 80.0, left: 20.0, right: 20.0),
+      margin: EdgeInsets.only(
+          top: marginTop,
+          bottom: marginBottom,
+          left: marginHorizontal,
+          right: marginHorizontal),
       decoration: BoxDecoration(
           image:
               DecorationImage(image: AssetImage(pathImage), fit: BoxFit.cover),
@@ -35,7 +55,9 @@ class CardImage extends StatelessWidget {
         card,
         isWithIcon
             ? FloatingActionButtonGreen(
-                heroTagString: heroTag,
+                iconData: iconData!,
+                onPressed: onPressedFabIcon!,
+                heroTagString: heroTag!,
               )
             : Container()
       ],
