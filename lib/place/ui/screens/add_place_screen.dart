@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:platzi_tripss_app/place/model/place.dart';
 import 'package:platzi_tripss_app/place/ui/widgets/card_image.dart';
 import 'package:platzi_tripss_app/place/ui/widgets/title_input_location_widget.dart';
+import 'package:platzi_tripss_app/user/bloc/bloc_user.dart';
 import 'package:platzi_tripss_app/widgets/button_purple.dart';
 import 'package:platzi_tripss_app/widgets/gradient_back.dart';
 import 'package:platzi_tripss_app/widgets/text_input_widget.dart';
@@ -19,8 +22,10 @@ class AddPlaceScreen extends StatefulWidget {
 }
 
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
+  late UserBloc _userBloc;
   @override
   Widget build(BuildContext context) {
+    _userBloc = BlocProvider.of(context);
     final _controllerInputTitlePlace = TextEditingController();
     final _controllerInputDescriptionPlace = TextEditingController();
     final _controllerInputLocationPlace = TextEditingController();
@@ -107,6 +112,12 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                   // url image
                   // 2. Cloud Firestore
                   // Place - title, description, urlImage, userOwner, likes
+                  _userBloc
+                      .updatePlace(Place(
+                          name: _controllerInputTitlePlace.text,
+                          description: _controllerInputDescriptionPlace.text,
+                          numLikes: 0))
+                      .whenComplete(() => Navigator.pop(context));
                 }),
           )
         ],

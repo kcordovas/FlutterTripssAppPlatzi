@@ -5,16 +5,16 @@ class Place {
   String id;
   String name;
   String description;
-  String uriImage;
+  String? uriImage;
   int numLikes;
-  UserTrips userTripsOwner;
+  UserTrips? userTripsOwner;
 
   Place(
       {Key? key,
       required this.name,
       required this.description,
-      required this.uriImage,
-      required this.userTripsOwner,
+      this.uriImage,
+      this.userTripsOwner,
       this.numLikes = 0,
       this.id = ""});
 }

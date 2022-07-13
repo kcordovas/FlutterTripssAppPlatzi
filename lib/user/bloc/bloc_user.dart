@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:platzi_tripss_app/place/model/place.dart';
 import 'package:platzi_tripss_app/user/model/user.dart';
 import 'package:platzi_tripss_app/user/repository/auth_repository.dart';
 import 'package:platzi_tripss_app/user/repository/cloud_firestore_repository.dart';
@@ -33,6 +34,11 @@ class UserBloc implements Bloc {
   // 3. Register a user
   void updateUser(UserTrips userTrips) =>
       _cloudFireStoreRepository.updateUserFireStore(userTrips);
+
+  // Use Case
+  // 4. Add a place
+  Future<void> updatePlace(Place place) =>
+      _cloudFireStoreRepository.updatePlaceData(place);
 
   @override
   void dispose() {

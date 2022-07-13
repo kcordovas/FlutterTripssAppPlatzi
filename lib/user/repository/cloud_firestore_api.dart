@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:platzi_tripss_app/place/model/place.dart';
 import 'package:platzi_tripss_app/user/model/user.dart';
+
+import 'firebase_auth_api.dart';
 
 class CloudFireStoreApi {
   // ignore: constant_identifier_names
@@ -8,12 +11,13 @@ class CloudFireStoreApi {
   final placesCollectionName = "places";
 
   final FirebaseFirestore _firebaseStorage = FirebaseFirestore.instance;
+  final _firebaseAuthApi = FirebaseAuthApi();
 
   void updateUserData(UserTrips userTrips) async {
     final CollectionReference collectionReference =
         _firebaseStorage.collection(userCollectionName);
     final docReference = collectionReference.doc(userTrips.uid);
-    return docReference.set({
+    return await docReference.set({
       _UserFireStoreLabel.uid.name: userTrips.uid,
       _UserFireStoreLabel.name.name: userTrips.name,
       _UserFireStoreLabel.email.name: userTrips.email,
@@ -22,6 +26,20 @@ class CloudFireStoreApi {
       _UserFireStoreLabel.myFavoritePlaces.name: userTrips.myFavoritePlaces,
       _UserFireStoreLabel.lastSignIn.name: DateTime.now()
     }, SetOptions(merge: true));
+  }
+
+  Future<void> updatePlaceData(Place place) async {
+    final collectionPlace = _firebaseStorage.collection(placesCollectionName);
+
+    if (_firebaseAuthApi.currentUser != null) {
+      await collectionPlace.add({
+        _PlaceFireStoreLabel.name.name: place.name,
+        _PlaceFireStoreLabel.description.name: place.description,
+        _PlaceFireStoreLabel.likes.name: place.numLikes,
+        _PlaceFireStoreLabel.userOwner.name:
+            "$userCollectionName/${_firebaseAuthApi.currentUser?.uid}" // reference
+      });
+    }
   }
 }
 
@@ -34,3 +52,5 @@ enum _UserFireStoreLabel {
   myFavoritePlaces,
   lastSignIn,
 }
+
+enum _PlaceFireStoreLabel { id, name, description, uriImage, likes, userOwner }
