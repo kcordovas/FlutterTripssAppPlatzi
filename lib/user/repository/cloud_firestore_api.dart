@@ -36,6 +36,7 @@ class CloudFireStoreApi {
         _PlaceFireStoreLabel.name.name: place.name,
         _PlaceFireStoreLabel.description.name: place.description,
         _PlaceFireStoreLabel.likes.name: place.numLikes,
+        _PlaceFireStoreLabel.uriImage.name: place.uriImage,
         _PlaceFireStoreLabel.userOwner.name:
             "$userCollectionName/${_firebaseAuthApi.currentUser?.uid}" // reference
       });

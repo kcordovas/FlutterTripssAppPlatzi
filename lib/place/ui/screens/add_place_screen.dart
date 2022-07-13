@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_tripss_app/place/model/place.dart';
@@ -111,14 +110,27 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                 onPressed: () {
                   // 1. Firebase Storage
                   // url image
-                  // 2. Cloud Firestore
-                  // Place - title, description, urlImage, userOwner, likes
-                  _userBloc
-                      .updatePlace(Place(
-                          name: _controllerInputTitlePlace.text,
-                          description: _controllerInputDescriptionPlace.text,
-                          numLikes: 0))
-                      .whenComplete(() => Navigator.pop(context));
+                  // Get User ID
+                  final currentUser = _userBloc.currentUser();
+                  if (currentUser != null) {
+                    final String uidUser = currentUser.uid;
+                    final String pathStorage =
+                        "$uidUser/${DateTime.now().toString()}.jpg";
+                    _userBloc.uploadFile(pathStorage, fileArgument).then(
+                        (snapshot) =>
+                            snapshot.ref.getDownloadURL().then((urlImage) {
+                              // 2. Cloud Firestore
+                              // Place - title, description, urlImage, userOwner, likes
+                              _userBloc
+                                  .updatePlace(Place(
+                                      name: _controllerInputTitlePlace.text,
+                                      description:
+                                          _controllerInputDescriptionPlace.text,
+                                      uriImage: urlImage,
+                                      numLikes: 0))
+                                  .whenComplete(() => Navigator.pop(context));
+                            }));
+                  }
                 }),
           )
         ],

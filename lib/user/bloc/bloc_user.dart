@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_tripss_app/place/model/place.dart';
+import 'package:platzi_tripss_app/place/repository/storage_repository.dart';
 import 'package:platzi_tripss_app/user/model/user.dart';
 import 'package:platzi_tripss_app/user/repository/auth_repository.dart';
 import 'package:platzi_tripss_app/user/repository/cloud_firestore_repository.dart';
@@ -8,6 +12,7 @@ import 'package:platzi_tripss_app/user/repository/cloud_firestore_repository.dar
 class UserBloc implements Bloc {
   final _authRepository = AuthRepository();
   final _cloudFireStoreRepository = CloudFireStoreRepository();
+  final _storageRepository = StorageRepository();
 
   // Data Flow - Streams
   // Streams with Firebase
@@ -39,6 +44,11 @@ class UserBloc implements Bloc {
   // 4. Add a place
   Future<void> updatePlace(Place place) =>
       _cloudFireStoreRepository.updatePlaceData(place);
+
+  // Use Case
+  // 5. Upload a image to Storage
+  Future<TaskSnapshot> uploadFile(String path, File image) =>
+      _storageRepository.uploadFile(path, image);
 
   @override
   void dispose() {
