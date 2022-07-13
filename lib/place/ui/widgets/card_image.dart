@@ -14,7 +14,7 @@ class CardImage extends StatelessWidget {
   double marginHorizontal;
   double marginTop;
   double marginBottom;
-  bool isImageOfLocalPhone;
+  EImageType imageType;
 
   CardImage(
       {Key? key,
@@ -28,14 +28,22 @@ class CardImage extends StatelessWidget {
       this.marginHorizontal = 20.0,
       this.marginTop = 0.0,
       this.marginBottom = 0.0,
-      this.isImageOfLocalPhone = false})
+      this.imageType = EImageType.Asset})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final imageWidget = isImageOfLocalPhone
-        ? FileImage(File(pathImage))
-        : AssetImage(pathImage);
+    ImageProvider imageWidget;
+    switch (imageType) {
+      case EImageType.Local:
+        imageWidget = FileImage(File(pathImage));
+        break;
+      case EImageType.Neetwork:
+        imageWidget = NetworkImage(pathImage);
+        break;
+      default:
+        imageWidget = AssetImage(pathImage);
+    }
     final card = Container(
       height: heightImage,
       width: widthImage,
@@ -45,8 +53,7 @@ class CardImage extends StatelessWidget {
           left: marginHorizontal,
           right: marginHorizontal),
       decoration: BoxDecoration(
-          image: DecorationImage(
-              image: imageWidget as ImageProvider, fit: BoxFit.cover),
+          image: DecorationImage(image: imageWidget, fit: BoxFit.cover),
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
           shape: BoxShape.rectangle,
           boxShadow: const [
@@ -71,3 +78,5 @@ class CardImage extends StatelessWidget {
     );
   }
 }
+
+enum EImageType { Neetwork, Local, Asset }

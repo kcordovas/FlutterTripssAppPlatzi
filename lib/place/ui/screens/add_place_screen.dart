@@ -23,9 +23,9 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   @override
   Widget build(BuildContext context) {
     _userBloc = BlocProvider.of(context);
-    final _controllerInputTitlePlace = TextEditingController();
-    final _controllerInputDescriptionPlace = TextEditingController();
-    final _controllerInputLocationPlace = TextEditingController();
+    final controllerInputTitlePlace = TextEditingController();
+    final controllerInputDescriptionPlace = TextEditingController();
+    final controllerInputLocationPlace = TextEditingController();
 
     final fileArgument = ModalRoute.of(context)!.settings.arguments as File;
 
@@ -68,7 +68,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
               heightImage: 300.0,
               pathImage: fileArgument.path,
               // pathImage: "assets/london.jpg",
-              isImageOfLocalPhone: true,
+              imageType: EImageType.Local,
               marginHorizontal: 20.0,
               isWithIcon: true,
               iconData: Icons.camera_alt,
@@ -84,7 +84,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
               hintText: "Title",
               textInputType: null,
               maxLines: 1,
-              editingController: _controllerInputTitlePlace,
+              editingController: controllerInputTitlePlace,
             ),
           ),
           // Description
@@ -92,14 +92,14 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
               hintText: "Description",
               textInputType: TextInputType.multiline,
               maxLines: 4,
-              editingController: _controllerInputDescriptionPlace),
+              editingController: controllerInputDescriptionPlace),
           // Input Location
           Container(
             margin: const EdgeInsets.only(top: 20.0),
             child: TextInputLocationWidget(
                 hintText: "Add Location",
                 iconData: Icons.location_on_outlined,
-                editingController: _controllerInputLocationPlace),
+                editingController: controllerInputLocationPlace),
           ),
           // Button FAB
           Container(
@@ -123,9 +123,9 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                               // Place - title, description, urlImage, userOwner, likes
                               _userBloc
                                   .updatePlace(Place(
-                                      name: _controllerInputTitlePlace.text,
+                                      name: controllerInputTitlePlace.text,
                                       description:
-                                          _controllerInputDescriptionPlace.text,
+                                          controllerInputDescriptionPlace.text,
                                       uriImage: urlImage,
                                       numLikes: 0))
                                   .whenComplete(() => Navigator.pop(context));

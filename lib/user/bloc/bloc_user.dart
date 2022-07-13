@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_tripss_app/place/model/place.dart';
 import 'package:platzi_tripss_app/place/repository/storage_repository.dart';
@@ -20,6 +20,12 @@ class UserBloc implements Bloc {
   authStatus() => _authRepository.authStatus;
 
   currentUser() => _authRepository.currentUser;
+
+  Stream<QuerySnapshot> placeList() => _cloudFireStoreRepository.placesStream;
+  // Convert a snapshot in list of Places
+  List<Place> buildPlacesOfSnapshot(
+          List<DocumentSnapshot> listDocumentSnapshot) =>
+      _cloudFireStoreRepository.buildPlacesOfSnapshot(listDocumentSnapshot);
 
   // Use Case of User object in method form
 
@@ -47,7 +53,7 @@ class UserBloc implements Bloc {
 
   // Use Case
   // 5. Upload a image to Storage
-  Future<TaskSnapshot> uploadFile(String path, File image) =>
+  uploadFile(String path, File image) =>
       _storageRepository.uploadFile(path, image);
 
   @override

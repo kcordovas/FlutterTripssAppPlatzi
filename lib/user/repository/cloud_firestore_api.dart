@@ -13,6 +13,9 @@ class CloudFireStoreApi {
   final FirebaseFirestore _firebaseStorage = FirebaseFirestore.instance;
   final _firebaseAuthApi = FirebaseAuthApi();
 
+  Stream<QuerySnapshot> placeListStream() =>
+      _firebaseStorage.collection(placesCollectionName).snapshots();
+
   void updateUserData(UserTrips userTrips) async {
     final CollectionReference collectionReference =
         _firebaseStorage.collection(userCollectionName);
@@ -54,6 +57,19 @@ class CloudFireStoreApi {
         });
       });
     }
+  }
+
+  List<Place> buildPlacesOfSnapshot(List<DocumentSnapshot> placeListSnapshot) {
+    List<Place> listPlaces = placeListSnapshot
+        .map((documentSnapshot) => Place(
+            id: documentSnapshot.id,
+            name: documentSnapshot[_PlaceFireStoreLabel.name.name],
+            description:
+                documentSnapshot[_PlaceFireStoreLabel.description.name],
+            numLikes: documentSnapshot[_PlaceFireStoreLabel.likes.name],
+            uriImage: documentSnapshot[_PlaceFireStoreLabel.uriImage.name]))
+        .toList();
+    return listPlaces;
   }
 }
 
