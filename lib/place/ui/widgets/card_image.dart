@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:platzi_tripss_app/widgets/floating_action_button_green.dart';
 
@@ -5,13 +7,14 @@ class CardImage extends StatelessWidget {
   final String pathImage;
   final double heightImage;
   final double widthImage;
+  final bool isWithIcon;
   IconData? iconData;
   String? heroTag;
   VoidCallback? onPressedFabIcon;
-  final bool isWithIcon;
   double marginHorizontal;
   double marginTop;
   double marginBottom;
+  bool isImageOfLocalPhone;
 
   CardImage(
       {Key? key,
@@ -24,11 +27,15 @@ class CardImage extends StatelessWidget {
       this.heroTag,
       this.marginHorizontal = 20.0,
       this.marginTop = 0.0,
-      this.marginBottom = 0.0})
+      this.marginBottom = 0.0,
+      this.isImageOfLocalPhone = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final imageWidget = isImageOfLocalPhone
+        ? FileImage(File(pathImage))
+        : AssetImage(pathImage);
     final card = Container(
       height: heightImage,
       width: widthImage,
@@ -38,8 +45,8 @@ class CardImage extends StatelessWidget {
           left: marginHorizontal,
           right: marginHorizontal),
       decoration: BoxDecoration(
-          image:
-              DecorationImage(image: AssetImage(pathImage), fit: BoxFit.cover),
+          image: DecorationImage(
+              image: imageWidget as ImageProvider, fit: BoxFit.cover),
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
           shape: BoxShape.rectangle,
           boxShadow: const [

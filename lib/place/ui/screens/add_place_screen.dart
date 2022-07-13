@@ -13,9 +13,7 @@ import 'package:platzi_tripss_app/widgets/title_header_widget.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   static const routeName = '/add_place_screen';
-
-  File? fileImage;
-  AddPlaceScreen({Key? key, this.fileImage}) : super(key: key);
+  AddPlaceScreen({Key? key}) : super(key: key);
 
   @override
   State<AddPlaceScreen> createState() => _AddPlaceScreenState();
@@ -29,6 +27,8 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     final _controllerInputTitlePlace = TextEditingController();
     final _controllerInputDescriptionPlace = TextEditingController();
     final _controllerInputLocationPlace = TextEditingController();
+
+    final fileArgument = ModalRoute.of(context)!.settings.arguments as File;
 
     final backgroundWidget = GradientBack(
       heightGradient: 300.0,
@@ -67,8 +67,9 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             child: CardImage(
               widthImage: double.infinity,
               heightImage: 300.0,
-              // pathImage: widget.fileImage!.path,
-              pathImage: "assets/london.jpg",
+              pathImage: fileArgument.path,
+              // pathImage: "assets/london.jpg",
+              isImageOfLocalPhone: true,
               marginHorizontal: 20.0,
               isWithIcon: true,
               iconData: Icons.camera_alt,

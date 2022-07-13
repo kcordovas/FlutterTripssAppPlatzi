@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:platzi_tripss_app/place/ui/screens/add_place_screen.dart';
 import 'package:platzi_tripss_app/user/bloc/bloc_user.dart';
 import 'package:platzi_tripss_app/user/ui/widgets/icon_button_profile.dart';
@@ -23,8 +26,26 @@ class ListIconHorizontalProfile extends StatelessWidget {
           IconButtonWhite(
             iconButton: Icons.add,
             isMini: false,
-            onPressed: () =>
-                Navigator.pushNamed(context, AddPlaceScreen.routeName),
+            onPressed: () {
+              File image;
+              try {
+                final imagePicker = ImagePicker();
+                final imageCameraPicker =
+                    imagePicker.pickImage(source: ImageSource.camera);
+
+                imageCameraPicker.then((value) {
+                  if (value != null) {
+                    image = File(value.path);
+                    Navigator.pushNamed(context, AddPlaceScreen.routeName,
+                        arguments: image);
+                  } else {
+                    print("photo is null");
+                  }
+                });
+              } catch (error) {
+                print("Error ${error.toString()}");
+              }
+            },
             heroTagString: "FAB_ADD",
           ),
           // Change Password

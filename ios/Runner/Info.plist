@@ -60,5 +60,16 @@
 		</dict>
 	</array>
 	<!-- End of the Google Sign-in Section -->
+	<!-- Permission Camera -->
+	<key>NSCameraUsageDescription</key>
+    <string>Platzi Trips quiere tomar una foto. ¿Podemos usar tu cámara?</string>
+	<!-- Permission Photo library -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Platzi Trips quiere tomar una foto. ¿Podemos usar tu cámara?</string>
+	<!-- Permission MICROPHONE library -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Platzi Trips quiere tomar una foto. ¿Podemos usar tu cámara?</string>
+	<!-- END GOOGLE Permission Photo -->
+
 </dict>
 </plist>
