@@ -37,8 +37,21 @@ class CloudFireStoreApi {
         _PlaceFireStoreLabel.description.name: place.description,
         _PlaceFireStoreLabel.likes.name: place.numLikes,
         _PlaceFireStoreLabel.uriImage.name: place.uriImage,
-        _PlaceFireStoreLabel.userOwner.name:
-            "$userCollectionName/${_firebaseAuthApi.currentUser?.uid}" // reference
+        // reference
+        _PlaceFireStoreLabel.userOwner.name: _firebaseStorage
+            .doc("$userCollectionName/${_firebaseAuthApi.currentUser?.uid}")
+      }).then((documentRef) {
+        documentRef.get().then((docSnapshot) {
+          final docRefUser = _firebaseStorage
+              .collection(userCollectionName)
+              .doc(_firebaseAuthApi.currentUser?.uid);
+          docRefUser.update({
+            // ID place reference and as array
+            _UserFireStoreLabel.myPlaces.name: FieldValue.arrayUnion([
+              _firebaseStorage.doc("$placesCollectionName/${docSnapshot.id}")
+            ])
+          });
+        });
       });
     }
   }
